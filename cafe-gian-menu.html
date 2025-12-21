@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>گیان کافه | منوی نوشیدنی و بیکری</title>
+  <style>
+    :root{
+      --bg:#f7f5f2;
+      --card:#ffffff;
+      --ink:#222;
+      --muted:#666;
+      --brand:#1f4b3f;
+      --accent:#d7a86e;
+      --line:#e8e3dc;
+      --shadow: 0 6px 18px rgba(0,0,0,.06);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family: "Segoe UI", "Tahoma", "Vazirmatn", system-ui, sans-serif; line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    header{
+      position:sticky; top:0; z-index:10;
+      background:linear-gradient(135deg, var(--brand), #2c3e35);
+      color:#fff; padding:18px 20px; box-shadow:var(--shadow)
+    }
+    .brand{
+      display:flex; align-items:center; gap:14px; flex-wrap:wrap
+    }
+    .brand h1{margin:0; font-size:24px; letter-spacing:.5px}
+    .brand small{color:#cfe3dc; font-size:13px}
+    .open-hours{font-size:13px; color:#e9f2ef}
+    .container{max-width:980px; margin:22px auto; padding:0 16px}
+    .intro{
+      background:var(--card); border:1px solid var(--line);
+      border-radius:var(--radius); padding:16px 18px; box-shadow:var(--shadow); margin-bottom:14px
+    }
+    .intro p{margin:0; color:var(--muted)}
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+    }
+    .card{
+      background:var(--card); border:1px solid var(--line);
+      border-radius:var(--radius); padding:14px; box-shadow:var(--shadow)
+    }
+    .card h2{
+      margin:0 0 8px; font-size:18px; color:var(--brand);
+      display:flex; align-items:center; justify-content:space-between
+    }
+    .section-note{font-size:12px; color:var(--muted); margin-top:-4px; margin-bottom:8px}
+    .item{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      padding:10px 8px; border-bottom:1px dashed var(--line)
+    }
+    .item:last-child{border-bottom:0}
+    .name{font-weight:600}
+    .desc{font-size:12px; color:var(--muted)}
+    .price{
+      background:#faf7f2; border:1px solid var(--line); color:#333;
+      padding:4px 10px; border-radius:999px; min-width:64px; text-align:center; font-weight:600
+    }
+    .badge{
+      font-size:11px; color:#885f2a; background:#fff6e6; border:1px solid #f3e1c5;
+      padding:2px 8px; border-radius:999px
+    }
+    footer{
+      margin-top:24px; color:var(--muted); font-size:12px; text-align:center; padding:16px
+    }
+    .pillnav{
+      display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 0; overflow-x: auto; padding: 5px 0
+    }
+    .pillnav button{
+      border:1px solid var(--line); background:#fff; color:#333;
+      padding:6px 12px; border-radius:999px; cursor:pointer; white-space: nowrap; font-size: 13px
+    }
+    .pillnav button.active{background:var(--brand); color:#fff; border-color:transparent}
+    /* Print */
+    @media print{
+      header, .pillnav, footer{display:none}
+      .card{box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>گیان کافه</h1>
+    <span class="badge">نوشیدنی و بیکری</span>
+    <small>GIAN_CAFE@</small>
+  </div>
+  <div class="open-hours">در این خانه، برای جان میل کنید — برقراریم ۸ صبح الی ۱۱ شب</div>
+  <nav class="pillnav" id="nav"></nav>
+</header>
+
+<div class="container">
+  <div class="intro">
+    <p>منو به تومان است برای انتخاب بهتر از باریستا کمک بگیرید.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <footer>❤️ با افتخار ساخته شده توسط علیرضا کمانکش</footer>
+</div>
+
+<script id="menu-data" type="application/json">
+{
+  "categories": [
+    {
+      "title": "نوشیدنی بر پایه اسپرسو",
+      "items": [
+        {"name": "اسپرسو", "price": 65},
+        {"name": "اسپرسو 50.50", "price": 90},
+        {"name": "قهوه تخصصی (۱۰۰٪ عربیکا)", "price": 115},
+        {"name": "اسپرسو رومانو", "price": 75},
+        {"name": "اسپرسو ماکیاتو", "price": 80},
+        {"name": "آمریکانو", "price": 95},
+        {"name": "کورتادو", "price": 95},
+        {"name": "لته", "price": 150},
+        {"name": "موکا", "price": 160},
+        {"name": "کارامل ماکیاتو", "price": 160},
+        {"name": "کاپوچینو", "price": 150}
+      ]
+    },
+    {
+      "title": "نوشیدنی گرم",
+      "items": [
+        {"name": "هات چاکلت", "price": 120},
+        {"name": "شیر عسل", "price": 110},
+        {"name": "ماسالا", "price": 110},
+        {"name": "وایت چاکلت", "price": 110},
+        {"name": "شیرکاکائو", "price": 110},
+        {"name": "ماچا لته", "price": 140},
+        {"name": "اسپرولینا", "price": 140},
+        {"name": "چای کرک", "price": 110}
+      ]
+    },
+    {
+      "title": "دمنوش",
+      "items": [
+        {"name": "گیان", "desc": "زعفران، هل، غنچه گل محمدی", "price": 170},
+        {"name": "نگار", "desc": "بهار نارنج, به‌لیمو، آویشن", "price": 98},
+        {"name": "کژال", "desc": "گل گاوزبان، به‌لیمو، گل سرخ", "price": 98},
+        {"name": "چای سبز", "price": 85},
+        {"name": "چای سیاه", "price": 70},
+        {"name": "چای ترش", "price": 85},
+        {"name": "چای کوهی", "price": 90}
+      ]
+    },
+    {
+      "title": "قهوه دمی",
+      "items": [
+        {"name": "کمکس", "price": 240},
+        {"name": "V60", "price": 240}
+      ]
+    },
+    {
+      "title": "آیس کافی",
+      "items": [
+        {"name": "آیس لته", "price": 115},
+        {"name": "آیس لته فندقی", "price": 130},
+        {"name": "آیس کارامل ماکیاتو", "price": 130},
+        {"name": "آیس موکا", "price": 130},
+        {"name": "آیس آمریکانو", "price": 95},
+        {"name": "آیس چاکلت", "price": 125},
+        {"name": "آیس ماچا لته", "price": 145},
+        {"name": "ماچابری", "price": 220},
+        {"name": "آیس اسپرولینا", "price": 140},
+        {"name": "خلیج", "desc": "اسپرولینا، انبه، یخ‌شیر", "price": 240}
+      ]
+    },
+    {
+      "title": "شیک",
+      "items": [
+        {"name": "موز شکلات", "price": 170},
+        {"name": "انبه (با تکه های میوه)", "price": 210},
+        {"name": "توت فرنگی", "price": 160},
+        {"name": "لوتوس", "price": 160},
+        {"name": "کره گردو", "price": 150},
+        {"name": "گیان", "price": 160},
+        {"name": "شیک پروتئینی", "desc": "شیر، عسل، کره بادام زمینی", "price": 250}
+      ]
+    },
+    {
+      "title": "ماکتل",
+      "items": [
+        {"name": "گیان", "desc": "عطری و گازدار", "price": 170},
+        {"name": "زرین", "desc": "استوایی و لیمویی", "price": 170},
+        {"name": "رعنا", "desc": "ترش و تند", "price": 170},
+        {"name": "نیل", "desc": "شیرین و عطری", "price": 170}
+      ]
+    },
+    {
+      "title": "ژلاتو",
+      "items": [
+        {"name": "آفوگاتو", "desc": "وانیل، شکلات", "price": 135},
+        {"name": "استوایی", "desc": "موز، آناناس، انبه، پسته", "price": 260}
+      ]
+    },
+    {
+      "title": "بستنی",
+      "items": [
+        {"name": "شکلاتی", "price": 65},
+        {"name": "کره گردو", "price": 65},
+        {"name": "توت فرنگی", "price": 65},
+        {"name": "انبه", "price": 65},
+        {"name": "وانیل", "price": 65},
+        {"name": "کیک پسته", "price": 65},
+        {"name": "آلبالو", "price": 65},
+        {"name": "وانیل پسته", "price": 65},
+        {"name": "زعفران پسته", "price": 65}
+      ]
+    },
+    {
+      "title": "کوکی",
+      "items": [
+        {"name": "کوکی شکلاتی", "price": 55},
+        {"name": "کوکی کشمشی", "price": 55},
+        {"name": "کوکی جوی شکلاتی (رژیمی)", "price": 55}
+      ]
+    },
+    {
+      "title": "نان‌ها",
+      "items": [
+        {"name": "کرافین پسته", "price": 230},
+        {"name": "کرافین شکلات", "price": 195},
+        {"name": "کرافین لوتوس", "price": 230},
+        {"name": "رول نیویورکی پسته", "price": 245},
+        {"name": "رول نیویورکی شکلات", "price": 210},
+        {"name": "رول نیویورکی لوتوس", "price": 215},
+        {"name": "چاکلت توییست", "price": 195}
+      ]
+    },
+    {
+      "title": "بیکری | کیک و چیز",
+      "note": "تیرامیسو و کیک سه شیر با چای رایگان سرو می‌شوند",
+      "items": [
+        {"name": "کیک خیس شکلاتی", "price": 110},
+        {"name": "تیرامیسو", "price": 120},
+        {"name": "کیک سه شیر", "price": 120},
+        {"name": "چیزکیک روز", "price": 135}
+      ]
+    },
+    {
+      "title": "چیزکیک عیونی",
+      "items": [
+        {"name": "دبی چاکلت", "price": 150},
+        {"name": "چیز کیک پسته", "price": 250}
+      ]
+    },
+    {
+      "title": "سرو و بیرون‌بر",
+      "items": [
+        {"name": "سیروپ به‌دلخواه", "price": 25},
+        {"name": "بیرون بر", "price": "۱۰ الی ۳۰ هزار تومان"},
+        {"name": "باقلوا اصل عربی", "price": null}
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+  // Render menu
+  const dataEl = document.getElementById('menu-data');
+  const menu = JSON.parse(dataEl.textContent);
+  const grid = document.getElementById('grid');
+  const nav = document.getElementById('nav');
+
+  function formatPrice(p) {
+    if (p === null || p === undefined || p === "") return "قیمت روز";
+    if (typeof p === "string") return p;
+    return new Intl.NumberFormat('fa-IR').format(p);
+  }
+
+  function makeCard(cat, idx) {
+    const card = document.createElement('section');
+    card.className = 'card';
+    const h = document.createElement('h2');
+    h.innerHTML = `<span>${cat.title}</span>${cat.note ? '<span class="badge">یادداشت</span>' : ''}`;
+    card.appendChild(h);
+    
+    if (cat.note) {
+      const note = document.createElement('div');
+      note.className = 'section-note';
+      note.textContent = cat.note;
+      card.appendChild(note);
+    }
+    
+    cat.items.forEach(it => {
+      const row = document.createElement('div');
+      row.className = 'item';
+      const left = document.createElement('div');
+      left.innerHTML = `<div class="name">${it.name}</div>${it.desc ? `<div class="desc">${it.desc}</div>` : ''}`;
+      const right = document.createElement('div');
+      right.className = 'price';
+      right.textContent = formatPrice(it.price);
+      row.appendChild(left);
+      row.appendChild(right);
+      card.appendChild(row);
+    });
+    
+    card.id = 'cat-' + idx;
+    return card;
+  }
+
+  function render() {
+    grid.innerHTML = '';
+    nav.innerHTML = '';
+    
+    menu.categories.forEach((cat, i) => {
+      grid.appendChild(makeCard(cat, i));
+      
+      const btn = document.createElement('button');
+      btn.textContent = cat.title;
+      btn.onclick = () => {
+        document.querySelectorAll('.pillnav button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('cat-' + i).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      };
+      
+      nav.appendChild(btn);
+    });
+    
+    // فعال کردن اولین دکمه
+    if (nav.firstChild) {
+      nav.firstChild.classList.add('active');
+    }
+  }
+  
+  // خودکار فعال کردن دکمه هنگام اسکرول
+  window.addEventListener('scroll', () => {
+    const cards = document.querySelectorAll('.card');
+    const navButtons = document.querySelectorAll('.pillnav button');
+    
+    let currentSection = '';
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top <= 100 && rect.bottom >= 100) {
+        currentSection = 'cat-' + index;
+      }
+    });
+    
+    navButtons.forEach(btn => {
+      btn.classList.remove('active');
+      const targetId = 'cat-' + Array.from(navButtons).indexOf(btn);
+      if (targetId === currentSection) {
+        btn.classList.add('active');
+      }
+    });
+  });
+
+  // رندر اولیه
+  document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
