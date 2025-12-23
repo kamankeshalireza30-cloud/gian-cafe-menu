@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
   <title>گیان کافه | منوی کامل نوشیدنی و بیکری</title>
   <style>
     /* متغیرهای رنگ */
@@ -37,57 +37,77 @@
     .header {
       background: linear-gradient(135deg, var(--primary), #2d5a3d);
       color: var(--white);
-      padding: 20px 16px;
+      padding: 0;
       box-shadow: var(--shadow);
       position: sticky;
       top: 0;
       z-index: 100;
+      width: 100%;
+      overflow: hidden;
     }
 
     .brand-container {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 15px;
+      gap: 10px;
+      margin-bottom: 12px;
+      width:100% ;
     }
 
     .brand-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      width: 100%;
       gap: 10px;
     }
 
     .brand-title {
-      font-size: 28px;
-      font-weight: 800;
+      font-size: 28px !important;
+      font-weight: 900;
       letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin: 0;
+      color:#ffffff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+      width: 100%;
+      display: block;
     }
 
     .brand-subtitle {
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.1);
-      padding: 4px 12px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 6px 12px;
       border-radius: 20px;
+     margin-top: 8px;
+     display: inline-block;
+     font-weight: 600;
+     backdrop-filter: blur(10px);
     }
 
     .brand-instagram {
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.8);
+      color:#ffffff;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      white-space: nowrap;
+      background: rgba(0, 0, 0, 0.03);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      flex-shrink: 0;
     }
 
     .hours {
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.95);
       text-align: center;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      margin-top: 10px;
+      padding-top: 12px 0;
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+      margin-top: 12px;
+      
     }
 
     /* ناوبری دسته‌ها */
