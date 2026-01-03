@@ -4,201 +4,400 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>گیان کافه | منوی کامل نوشیدنی و بیکری</title>
+  <link href="https://v1.fontapi.ir/css/Vazirmatn" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ریست کامل */
+    /* ===== ریست و تنظیمات پایه ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-text-size-adjust: 100%;
-      -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
     }
     
     html, body {
       width: 100%;
       overflow-x: hidden;
       font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
-      background: #f7fcf8;
-      color: #2c2c2c;
+      background: linear-gradient(135deg, #f8fcf9 0%, #f0f7f2 100%);
+      color: #1a3a27;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
     
-    /* هدر - کاملاً تمام صفحه */
-    header {
-      width: 100vw;
-      background: linear-gradient(135deg, #1a472a, #2d5a3d);
-      color: white;
-      position: sticky;
+    /* ===== اسلایدشو (Hero Slider) ===== */
+    .hero-slider {
+      width: 100%;
+      height: 65vh;
+      min-height: 400px;
+      max-height: 600px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 10px 30px rgba(26, 93, 58, 0.2);
+      margin-bottom: 30px;
+    }
+    
+    .slides-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    
+    .slide {
+      position: absolute;
       top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      right: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
     
+    .slide.active {
+      opacity: 1;
+    }
+    
+    .slide-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(26, 58, 39, 0.9), transparent);
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .slide-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .slide-desc {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .slider-dots {
+      position: absolute;
+      bottom: 20px;
+      right: 50%;
+      transform: translateX(50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .dot.active {
+      background: white;
+      transform: scale(1.3);
+    }
+    
+    /* ===== هدر و اطلاعات تماس ===== */
     .header-content {
-      padding: 20px 16px;
-      width: 100%;
+      padding: 25px 20px 15px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     
-    /* ردیف برند */
     .brand-top {
-      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .logo-title-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .cafe-logo-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      overflow: hidden;
+      background: white;
+      padding: 5px;
+      box-shadow: 0 5px 15px rgba(26, 93, 58, 0.2);
+      border: 2px solid #e0f0e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cafe-logo-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .main-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #1a472a;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      margin: 0;
+    }
+    
+    .contact-bar {
+      background: linear-gradient(135deg, #1a5d3a, #2e8b57);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+      flex-shrink: 0;
+      min-width: 280px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .contact-item i {
+      font-size: 1.1rem;
+      color: #d4edda;
+    }
+    
+    .contact-link {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .contact-link:hover {
+      color: #d4edda;
+      text-decoration: underline;
+    }
+    
+    .working-hours {
+      font-size: 1.2rem;
+      color: #2e8b57;
+      background: rgba(46, 139, 87, 0.1);
+      padding: 15px 25px;
+      border-radius: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      font-weight: 600;
+      border: 2px dashed #8fbc8f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .hours-container {
+      display: flex;
+      align-items: center;
       gap: 10px;
     }
     
-    /* تایتل اصلی - بسیار بزرگ */
-    .main-title {
-      font-size: 36px !important;
-      font-weight: 900;
-      color: white;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-      margin: 0;
-      line-height: 1.1;
-      flex: 1;
-      min-width: 200px;
-      text-align: right;
+    .hours-container i {
+      font-size: 1.3rem;
     }
     
-    /* زیرعنوان */
-    .subtitle {
-      font-size: 16px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      margin: 10px 0;
-      display: inline-block;
-      font-weight: 600;
-    }
-    
-    /* اینستاگرام و شماره */
-    .contact-info {
-      background: rgba(0,0,0,0.3);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    
-    /* ساعت کاری */
-    .working-hours {
-      font-size: 14px;
-      color: rgba(255,255,255,0.95);
-      text-align: center;
-      padding: 15px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      margin-top: 15px;
-      line-height: 1.5;
-      width: 100%;
-    }
-    
-    /* ناوبری */
+    /* ===== ناوبری دسته‌بندی ===== */
     .nav-container {
-      width: 100%;
-      background: rgba(0,0,0,0.25);
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      background: white;
+      border-radius: 20px;
+      padding: 10px 15px;
+      margin: 0 auto 25px;
+      max-width: 1200px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e0f0e5;
     }
     
     .nav-scroll {
       display: flex;
-      padding: 14px 16px;
-      gap: 10px;
-      min-width: max-content;
+      overflow-x: auto;
+      padding: 10px 5px;
+      gap: 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
     }
     
     .nav-btn {
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: none;
-      padding: 12px 20px;
+      background: #f0f7f2;
+      color: #1a5d3a;
+      border: 2px solid #c8e6d1;
+      padding: 12px 24px;
       border-radius: 25px;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.3s;
       flex-shrink: 0;
     }
     
-    .nav-btn.active {
-      background: #d4af37;
-      color: #1a472a;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    .nav-btn:hover {
+      background: #d4edda;
+      transform: translateY(-2px);
     }
     
-    /* محتوای اصلی */
+    .nav-btn.active {
+      background: linear-gradient(135deg, #2e8b57, #1a5d3a);
+      color: white;
+      border-color: #2e8b57;
+      box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+    }
+    
+    /* ===== سیستم آکاردئون ===== */
     .main-container {
-      width: 100%;
-      padding: 20px 16px;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px 40px;
     }
     
     .intro-box {
       background: white;
-      padding: 20px;
-      border-radius: 16px;
-      margin-bottom: 25px;
+      padding: 25px;
+      border-radius: 20px;
+      margin-bottom: 30px;
       text-align: center;
-      font-size: 16px;
-      color: #555;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border: 1px solid #e8e3dc;
+      font-size: 1.2rem;
+      color: #2e8b57;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      border: 2px solid #e0f0e5;
     }
     
-    /* کارت‌های منو */
-    .menu-section {
+    .accordion-section {
       background: white;
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 25px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      border: 1px solid #e8e3dc;
-      width: 100%;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e0f0e5;
+      transition: all 0.4s ease;
+    }
+    
+    .accordion-header {
+      padding: 22px 25px;
+      background: linear-gradient(135deg, #f8fcf9, #e8f5ee);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e0f0e5;
+      transition: all 0.3s;
+    }
+    
+    .accordion-header:hover {
+      background: linear-gradient(135deg, #e8f5ee, #d8edd8);
     }
     
     .section-title {
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 800;
       color: #1a472a;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 3px solid #d4af37;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
+      margin: 0;
+    }
+    
+    .section-icon {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #2e8b57, #1a5d3a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .accordion-toggle {
+      font-size: 1.8rem;
+      color: #2e8b57;
+      transition: transform 0.4s ease;
+      font-weight: 300;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(46, 139, 87, 0.1);
+    }
+    
+    .accordion-section.active .accordion-toggle {
+      transform: rotate(180deg);
+      background: rgba(46, 139, 87, 0.2);
+    }
+    
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .accordion-section.active .accordion-content {
+      max-height: 3000px;
     }
     
     .section-note {
       background: #f8f9fa;
-      padding: 12px 16px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      font-size: 14px;
-      color: #666;
-      border-right: 4px solid #d4af37;
+      padding: 18px 25px;
+      margin: 0;
+      font-size: 1rem;
+      color: #2e8b57;
+      font-weight: 600;
+      border-right: 5px solid #2e8b57;
     }
     
-    /* آیتم‌های منو */
+    .menu-items {
+      padding: 15px 25px 25px;
+    }
+    
+    /* ===== آیتم‌های منو ===== */
     .menu-item {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 16px 0;
-      border-bottom: 1px dashed #e8e3dc;
+      padding: 18px 0;
+      border-bottom: 1px dashed #e0f0e5;
+      transition: all 0.3s;
+    }
+    
+    .menu-item:hover {
+      background: rgba(46, 139, 87, 0.03);
+      padding-right: 10px;
+      padding-left: 10px;
+      border-radius: 10px;
     }
     
     .menu-item:last-child {
@@ -207,97 +406,243 @@
     
     .item-details {
       flex: 1;
-      padding-left: 15px;
+      padding-left: 20px;
     }
     
     .item-name {
-      font-size: 17px;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #222;
-      margin-bottom: 4px;
+      color: #1a3a27;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .item-name .badge {
+      background: linear-gradient(135deg, #2e8b57, #1a5d3a);
+      color: white;
+      font-size: 0.75rem;
+      padding: 3px 12px;
+      border-radius: 15px;
+      font-weight: 600;
     }
     
     .item-desc {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.5;
+      font-size: 0.95rem;
+      color: #5a7c69;
+      line-height: 1.6;
+      margin-top: 5px;
     }
     
     .item-price {
-      font-size: 17px;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: #1a472a;
-      background: #f8f9fa;
-      padding: 10px 18px;
+      color: #2e8b57;
+      background: #f0f7f2;
+      padding: 12px 22px;
       border-radius: 20px;
-      min-width: 100px;
+      min-width: 130px;
       text-align: center;
       white-space: nowrap;
+      border: 2px solid #d4edda;
+      transition: all 0.3s;
     }
     
-    /* فوتر */
+    .menu-item:hover .item-price {
+      background: #2e8b57;
+      color: white;
+      transform: scale(1.05);
+    }
+    
+    /* ===== لینک‌های اجتماعی در فوتر ===== */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #2e8b57;
+      text-decoration: none;
+      padding: 12px 25px;
+      background: white;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid #e0f0e5;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(46, 139, 87, 0.1);
+    }
+    
+    .social-links a:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(46, 139, 87, 0.2);
+      border-color: #2e8b57;
+    }
+    
+    .social-links a i {
+      font-size: 1.3rem;
+    }
+    
+    /* رنگ‌های خاص برای هر پلتفرم */
+    .social-links a:nth-child(1):hover {
+      background: #0077b5;
+      color: white;
+    }
+    
+    .social-links a:nth-child(2):hover {
+      background: #0088cc;
+      color: white;
+    }
+    
+    /* ===== فوتر ===== */
     footer {
       text-align: center;
-      padding: 25px;
-      color: #666;
-      font-size: 14px;
-      border-top: 1px solid #e8e3dc;
-      margin-top: 30px;
+      padding: 30px 20px;
+      color: #5a7c69;
+      font-size: 0.95rem;
+      border-top: 2px solid #e0f0e5;
+      margin-top: 40px;
+      background: white;
+    }
+    
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .footer-text {
+      margin-bottom: 20px;
+      line-height: 1.8;
     }
     
     .heart {
       color: #e74c3c;
+      animation: heartbeat 1.5s infinite;
     }
     
-    /* گرید برای تبلت */
-    @media (min-width: 768px) {
-      .menu-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    /* ===== رسپانسیو ===== */
+    @media (max-width: 768px) {
+      .hero-slider {
+        height: 50vh;
+        min-height: 350px;
       }
       
-      .menu-section {
-        margin-bottom: 0;
+      .slide-title {
+        font-size: 1.5rem;
+      }
+      
+      .slide-desc {
+        font-size: 1rem;
       }
       
       .main-title {
-        font-size: 42px !important;
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .header-content {
-        padding: 25px 40px;
-      }
-      
-      .nav-container {
-        padding: 0 40px;
-      }
-      
-      .main-container {
-        padding: 30px 40px;
-      }
-      
-      .main-title {
-        font-size: 48px !important;
-      }
-    }
-    
-    /* برای موبایل‌های کوچک */
-    @media (max-width: 480px) {
-      .main-title {
-        font-size: 32px !important;
+        font-size: 2rem;
       }
       
       .brand-top {
         flex-direction: column;
-        align-items: flex-start;
+        text-align: center;
         gap: 15px;
       }
       
-      .contact-info {
+      .logo-title-container {
+        justify-content: center;
+      }
+      
+      .contact-bar {
         width: 100%;
+        min-width: auto;
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .item-price {
+        min-width: 110px;
+        font-size: 1.2rem;
+        padding: 10px 18px;
+      }
+      
+      .social-links {
+        gap: 15px;
+      }
+      
+      .social-links a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-slider {
+        height: 45vh;
+        min-height: 300px;
+      }
+      
+      .main-title {
+        font-size: 1.8rem;
+      }
+      
+      .cafe-logo-img {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .contact-bar {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+      
+      .working-hours {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+      
+      .nav-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
+      
+      .accordion-header {
+        padding: 18px 20px;
+      }
+      
+      .section-title {
+        font-size: 1.2rem;
+      }
+      
+      .item-name {
+        font-size: 1.1rem;
+      }
+      
+      .item-price {
+        min-width: 100px;
+        font-size: 1.1rem;
+        padding: 8px 16px;
+      }
+      
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      
+      .social-links a {
+        width: 200px;
         justify-content: center;
       }
     }
@@ -305,23 +650,55 @@
 </head>
 <body>
 
+<!-- اسلایدشو -->
+<section class="hero-slider">
+  <div class="slides-container" id="slidesContainer">
+    
+    <!-- اسلایدها با جاوااسکریپت ساخته می‌شوند -->
+  </div>
+  
+  <div class="slider-dots" id="sliderDots">
+    <!-- نقاط با جاوااسکریپت -->
+  </div>
+</section>
+
+<!-- هدر اصلی -->
 <header>
   <div class="header-content">
     <div class="brand-top">
-      <h1 class="main-title">گیان کافه</h1>
-      <div class="contact-info">
-        <span>🌐</span>
-        GIAN_CAFE | 09391916545
+      <div class="logo-title-container">
+        <div class="cafe-logo-img">
+          <!-- لوگو کافه - نام فایل: gian-cafe-logo.png -->
+          <img src="logo gian.jpg" alt="گیان کافه" class="cafe-logo-image">
+        </div>
+        <h1 class="main-title">گیان کافه</h1>
+      </div>
+      
+      <div class="contact-bar">
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <a href="tel:09391916545" class="contact-link">۰۹۳۹۱۹۱۶۵۴۵</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <a href="https://maps.google.com/?q=گیان+کافه" target="_blank" class="contact-link">موقعیت مکانی</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-instagram"></i>
+          <a href="https://instagram.com/GIAN_CAFE" target="_blank" class="contact-link">@GIAN_CAFE</a>
+        </div>
       </div>
     </div>
     
-    <div class="subtitle">نوشیدنی و بیکری</div>
-    
     <div class="working-hours">
-      در این خانه، برای جان میل کنید — برقراریم ۸ صبح الی ۱۱ شب
+      <div class="hours-container">
+        <i class="fas fa-clock"></i>
+        <span>ساعت کاری: هر روز ۸:۰۰ صبح تا ۲۳:۰۰ شب</span>
+      </div>
     </div>
   </div>
   
+  <!-- ناوبری دسته‌بندی -->
   <div class="nav-container">
     <nav class="nav-scroll" id="categoryNav">
       <!-- دکمه‌ها با جاوااسکریپت -->
@@ -329,21 +706,43 @@
   </div>
 </header>
 
+<!-- محتوای اصلی -->
 <main class="main-container">
   <div class="intro-box">
-    برای انتخاب بهتر از باریستا کمک بگیرید.
+    برای انتخاب بهتر از باریستا کمک بگیرید.سفارشات بیرون بر پذیرفته می‌شوند
   </div>
   
-  <div class="menu-grid" id="menuGrid">
-    <!-- منو با جاوااسکریپت -->
+  <div class="accordion-container" id="accordionContainer">
+    <!-- بخش‌های آکاردئون با جاوااسکریپت -->
   </div>
 </main>
 
+<!-- فوتر -->
 <footer>
-  ساخته شده با <span class="heart">❤</span> توسط علیرضا کمانکش
+  <div class="footer-content">
+    <div class="footer-text">
+      <p>کافه گیان محیطی برای ساخت لحظاتی شیرین.</p>
+      <p>پاکدشت,بلوار آموزش و پرورش</p>
+    </div>
+    
+    <div class="social-links">
+      <!-- لینک لینکدین -->
+      <a href="https://linkedin.com/in/alireza-kamankesh" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      
+      <!-- لینک تلگرام -->
+      <a href="https://t.me/alireza_kamankesh" target="_blank" rel="noopener noreferrer" title="Telegram">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+    </div>
+    
+    <p class="copyright">© 2026 designed by alireza-kamankesh</p>
+  </div>
 </footer>
 
 <script>
+  // ===== داده‌های منو =====
   const menuData = {
     "categories": [
       {
@@ -352,7 +751,7 @@
         "items": [
           {"name": "اسپرسو", "price": 65},
           {"name": "اسپرسو 50.50", "price": 90},
-          {"name": "قهوه تخصصی (۱۰۰٪ عربیکا)", "price": 115},
+          {"name": "قهوه تخصصی (۱۰۰٪ عربیکا)", "price": 115, "badge": "پیشنهاد باریستا"},
           {"name": "اسپرسو رومانو", "price": 75},
           {"name": "اسپرسو ماکیاتو", "price": 80},
           {"name": "آمریکانو", "price": 95},
@@ -381,7 +780,7 @@
         "title": "دمنوش",
         "icon": "🌿",
         "items": [
-          {"name": "گیان", "desc": "زعفران، هل، غنچه گل محمدی", "price": 170},
+          {"name": "گیان", "desc": "زعفران، هل، غنچه گل محمدی", "price": 170, "badge": "محصول ویژه"},
           {"name": "نگار", "desc": "بهار نارنج، به‌لیمو، آویشن", "price": 98},
           {"name": "کژال", "desc": "گل گاوزبان، به‌لیمو، گل سرخ", "price": 98},
           {"name": "چای سبز", "price": 85},
@@ -419,7 +818,7 @@
         "icon": "🥤",
         "items": [
           {"name": "موز شکلات", "price": 170},
-          {"name": "انبه (با تکه‌های میوه)", "price": 210},
+          {"name": "انبه (با تکه‌های میوه)", "price": 210, "badge": "جدید"},
           {"name": "توت فرنگی", "price": 160},
           {"name": "لوتوس", "price": 160},
           {"name": "کره گردو", "price": 150},
@@ -483,12 +882,12 @@
         ]
       },
       {
-        "title": "بیکری | کیک و چیز",
+        "title": "بیکری و چیزکیک",
         "icon": "🍰",
         "note": "تیرامیسو و کیک سه شیر با چای رایگان سرو می‌شوند",
         "items": [
           {"name": "کیک خیس شکلاتی", "price": 110},
-          {"name": "تیرامیسو", "price": 120},
+          {"name": "تیرامیسو", "price": 120, "badge": "پرفروش"},
           {"name": "کیک سه شیر", "price": 120},
           {"name": "چیزکیک روز", "price": 135}
         ]
@@ -505,71 +904,267 @@
     ]
   };
 
-  // رندر کردن منو
+  // ===== داده‌های اسلایدشو =====
+  const sliderData = [
+    {
+      image: "vibe-1.jpg",
+      title: "فضای آرامش‌بخش گیان کافه",
+      desc: "مکانی برای استراحت و لذت بردن از بهترین نوشیدنی‌ها"
+    },
+    {
+      image: "vibe-4.jpg",
+      title: "قهوه تخصصی ۱۰۰٪ عربیکا",
+      desc: "با بهترین دانه‌های قهوه از مزارع منتخب جهان"
+    },
+    {
+      image: "vibe-9.jpg",
+      title: "دمنوش‌های گیاهی ویژه",
+      desc: "ترکیبی منحصربه‌فرد از زعفران، هل و گل محمدی"
+    },
+    {
+      image: "vibe-8.jpg",
+      title: "بیکری تازه و خانگی",
+      desc: "تیرامیسو، چیزکیک و شیرینی‌های روزانه"
+    },
+    {
+      image: "vibe-2.jpg",
+      title: "آیس کافی برای روزهای گرم",
+      desc: "انواع نوشیدنی‌های سرد و خنک‌کننده"
+    }
+  ];
+
+  // ===== اجرا پس از بارگذاری صفحه =====
   document.addEventListener('DOMContentLoaded', function() {
-    const menuGrid = document.getElementById('menuGrid');
-    const categoryNav = document.getElementById('categoryNav');
+    // 1. ساخت اسلایدشو
+    initSlider();
     
-    // فرمت قیمت
-    function formatPrice(price) {
-      if (price === null || price === undefined) return 'قیمت روز';
-      if (typeof price === 'string') return price;
-      return new Intl.NumberFormat('fa-IR').format(price) + ' تومان';
+    // 2. ساخت دکمه‌های ناوبری
+    initNavigation();
+    
+    // 3. ساخت آکاردئون
+    initAccordion();
+    
+    // 4. فعال‌سازی اولین بخش
+    activateFirstSection();
+  });
+
+  // ===== تابع‌های اصلی =====
+  function initSlider() {
+    const slidesContainer = document.getElementById('slidesContainer');
+    const sliderDots = document.getElementById('sliderDots');
+    
+    let currentSlide = 0;
+    let slideInterval;
+    
+    // ساخت اسلایدها و نقاط
+    sliderData.forEach((slide, index) => {
+      // ساخت اسلاید
+      const slideEl = document.createElement('div');
+      slideEl.className = `slide ${index === 0 ? 'active' : ''}`;
+      slideEl.style.backgroundImage = `url('${slide.image}')`;
+      slideEl.innerHTML = `
+        <div class="slide-overlay">
+          <h2 class="slide-title">${slide.title}</h2>
+          <p class="slide-desc">${slide.desc}</p>
+        </div>
+      `;
+      slidesContainer.appendChild(slideEl);
+      
+      // ساخت نقاط
+      const dot = document.createElement('div');
+      dot.className = `dot ${index === 0 ? 'active' : ''}`;
+      dot.dataset.index = index;
+      dot.addEventListener('click', () => goToSlide(index));
+      sliderDots.appendChild(dot);
+    });
+    
+    // تابع تغییر اسلاید
+    function goToSlide(index) {
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      
+      // غیرفعال کردن قبلی
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      
+      // فعال کردن جدید
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+      
+      // ریست تاینر
+      resetTimer();
     }
     
-    // ساخت دکمه‌های ناوبری
+    // اسلاید بعدی
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % sliderData.length;
+      goToSlide(nextIndex);
+    }
+    
+    // ریست تایمر
+    function resetTimer() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+    
+    // شروع تایمر
+    resetTimer();
+  }
+
+  function initNavigation() {
+    const categoryNav = document.getElementById('categoryNav');
+    
     menuData.categories.forEach((category, index) => {
       const button = document.createElement('button');
       button.className = 'nav-btn';
       button.textContent = category.title;
       button.onclick = () => {
-        const card = document.getElementById(`cat-${index}`);
-        if (card) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // حذف کلاس active از همه دکمه‌ها
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        
+        // اضافه کردن کلاس active به دکمه کلیک شده
+        button.classList.add('active');
+        
+        // اسکرول به بخش مورد نظر
+        const section = document.getElementById(`cat-${index}`);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // باز کردن بخش اگر بسته است
+          if (!section.classList.contains('active')) {
+            toggleAccordion(section.querySelector('.accordion-header'));
+          }
         }
       };
       categoryNav.appendChild(button);
     });
+  }
+
+  function initAccordion() {
+    const accordionContainer = document.getElementById('accordionContainer');
     
-    // ساخت کارت‌های منو
     menuData.categories.forEach((category, index) => {
-      const card = document.createElement('div');
-      card.className = 'menu-section';
-      card.id = `cat-${index}`;
+      const section = document.createElement('div');
+      section.className = 'accordion-section';
+      section.id = `cat-${index}`;
       
-      const title = document.createElement('h2');
-      title.className = 'section-title';
-      title.innerHTML = `<span>${category.icon}</span> ${category.title}`;
-      card.appendChild(title);
+      // هدر آکاردئون
+      const header = document.createElement('div');
+      header.className = 'accordion-header';
+      header.onclick = () => toggleAccordion(header);
       
+      header.innerHTML = `
+        <h3 class="section-title">
+          <span class="section-icon">${category.icon}</span>
+          ${category.title}
+        </h3>
+        <span class="accordion-toggle"><i class="fas fa-chevron-down"></i></span>
+      `;
+      
+      // محتوای آکاردئون
+      const content = document.createElement('div');
+      content.className = 'accordion-content';
+      
+      // نکته ویژه (اگر وجود دارد)
       if (category.note) {
         const note = document.createElement('div');
         note.className = 'section-note';
         note.textContent = category.note;
-        card.appendChild(note);
+        content.appendChild(note);
       }
+      
+      // آیتم‌های منو
+      const menuItems = document.createElement('div');
+      menuItems.className = 'menu-items';
       
       category.items.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'menu-item';
+        
+        // فرمت قیمت
+        let priceText;
+        if (item.price === null || item.price === undefined) {
+          priceText = 'قیمت روز';
+        } else if (typeof item.price === 'string') {
+          priceText = item.price;
+        } else {
+          priceText = new Intl.NumberFormat('fa-IR').format(item.price) + ' تومان';
+        }
+        
+        // ساختار آیتم
         itemDiv.innerHTML = `
           <div class="item-details">
-            <div class="item-name">${item.name}</div>
+            <div class="item-name">
+              ${item.name}
+              ${item.badge ? `<span class="badge">${item.badge}</span>` : ''}
+            </div>
             ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
           </div>
-          <div class="item-price">${formatPrice(item.price)}</div>
+          <div class="item-price">${priceText}</div>
         `;
-        card.appendChild(itemDiv);
+        
+        menuItems.appendChild(itemDiv);
       });
       
-      menuGrid.appendChild(card);
+      content.appendChild(menuItems);
+      
+      // مونتاژ نهایی
+      section.appendChild(header);
+      section.appendChild(content);
+      accordionContainer.appendChild(section);
+    });
+  }
+
+  // تابع کلیک بر هدر آکاردئون
+  function toggleAccordion(header) {
+    const section = header.closest('.accordion-section');
+    const isActive = section.classList.contains('active');
+    
+    // بستن همه بخش‌ها
+    document.querySelectorAll('.accordion-section').forEach(sec => {
+      sec.classList.remove('active');
     });
     
-    // فعال کردن اولین دکمه
-    if (categoryNav.firstChild) {
-      categoryNav.firstChild.classList.add('active');
+    // اگر بخش کلیک شده قبلاً باز نبود، آن را باز کن
+    if (!isActive) {
+      section.classList.add('active');
     }
-  });
+    
+    // به‌روزرسانی دکمه‌های ناوبری
+    updateNavButtons();
+  }
+
+  // فعال‌سازی اولین بخش
+  function activateFirstSection() {
+    const firstSection = document.querySelector('.accordion-section');
+    if (firstSection) {
+      firstSection.classList.add('active');
+    }
+    
+    // فعال‌سازی اولین دکمه ناوبری
+    const firstNavBtn = document.querySelector('.nav-btn');
+    if (firstNavBtn) {
+      firstNavBtn.classList.add('active');
+    }
+  }
+
+  // به‌روزرسانی دکمه‌های ناوبری بر اساس بخش فعال
+  function updateNavButtons() {
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const activeSection = document.querySelector('.accordion-section.active');
+    
+    if (!activeSection) return;
+    
+    const sectionId = activeSection.id;
+    const sectionIndex = parseInt(sectionId.replace('cat-', ''));
+    
+    navButtons.forEach((btn, index) => {
+      btn.classList.toggle('active', index === sectionIndex);
+    });
+  }
 </script>
 </body>
 </html>
