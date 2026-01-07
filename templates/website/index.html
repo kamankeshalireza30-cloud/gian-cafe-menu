@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>گیان کافه | منوی کامل نوشیدنی و بیکری</title>
+  <link href="https://v1.fontapi.ir/css/Vazirmatn" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  <!-- تعریف STATIC_URL -->
+  <script>
+    window.STATIC_URL = "{% static '' %}";
+  </script>
+
+  <!-- فایل جاوااسکریپت اصلی -->
+  <script src="{% static 'menu/js/main.js' %}"></script>
+
+
+  <!-- Main CSS File -->
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- اسلایدشو -->
+  <section class="hero-slider">
+    <div class="slides-container" id="slidesContainer">
+
+      <!-- اسلایدها با جاوااسکریپت ساخته می‌شوند -->
+    </div>
+
+    <div class="slider-dots" id="sliderDots">
+      <!-- نقاط با جاوااسکریپت -->
+    </div>
+  </section>
+
+  <!-- هدر اصلی -->
+  <header>
+    <div class="header-content">
+      <div class="brand-top">
+        <div class="logo-title-container">
+          <div class="cafe-logo-img">
+            <!-- لوگو کافه - نام فایل: gian-cafe-logo.png -->
+            <img src="{% static 'img/logo gian.jpg' %}" alt="گیان کافه" class="cafe-logo-image">
+          </div>
+          <h1 class="main-title">گیان کافه</h1>
+        </div>
+
+        <div class="contact-bar">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:09391916545" class="contact-link">۰۹۳۹۱۹۱۶۵۴۵</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <a href="https://maps.google.com/?q=گیان+کافه" target="_blank" class="contact-link">موقعیت مکانی</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-instagram"></i>
+            <a href="https://instagram.com/GIAN_CAFE" target="_blank" class="contact-link">@GIAN_CAFE</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="working-hours">
+        <div class="hours-container">
+          <i class="fas fa-clock"></i>
+          <span>ساعت کاری: هر روز ۸:۰۰ صبح تا ۲۳:۰۰ شب</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ناوبری دسته‌بندی -->
+    <div class="nav-container">
+      <nav class="nav-scroll" id="categoryNav">
+        <!-- دکمه‌ها با جاوااسکریپت -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- محتوای اصلی -->
+  <main class="main-container">
+    <div class="intro-box">
+      برای انتخاب بهتر از باریستا کمک بگیرید.سفارشات بیرون بر پذیرفته می‌شوند
+    </div>
+
+    <div class="accordion-container" id="accordionContainer">
+      <!-- بخش‌های آکاردئون با جاوااسکریپت -->
+    </div>
+  </main>
+
+  <!-- فوتر -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>کافه گیان محیطی برای ساخت لحظاتی شیرین.</p>
+        <p>پاکدشت,بلوار آموزش و پرورش</p>
+      </div>
+
+      <div class="social-links">
+        <!-- لینک لینکدین -->
+        <a href="https://linkedin.com/in/alireza-kamankesh" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+
+        <!-- لینک تلگرام -->
+        <a href="https://t.me/alireza_kamankesh" target="_blank" rel="noopener noreferrer" title="Telegram">
+          <i class="fab fa-telegram"></i> Telegram
+        </a>
+      </div>
+
+      <p class="copyright">© 2026 designed by alireza-kamankesh</p>
+    </div>
+  </footer>
+  <!-- Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
