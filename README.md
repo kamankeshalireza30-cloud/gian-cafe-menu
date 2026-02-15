@@ -1,6 +1,6 @@
 # GIAN Cafe - Digital Menu Website ☕
 
-![Project Screenshot](image.jpg)   
+![Project Screenshot](image_11.jpg)   
 A modern, responsive digital menu website for **GIAN Cafe**. This web application allows customers to browse the cafe's offerings, get barista recommendations, and place takeout orders with ease. The menu is dynamically categorized for a smooth and intuitive user experience.
 
 ## ✨ Live Demo
@@ -59,3 +59,35 @@ To get a local copy up and running, follow these steps:
 ## 📁 Project Structure
 
 A brief overview of the main project folders and files:
+
+gian-cafe-menu/
+├── mysite/ # Main Django project folder
+├── static/ # Static files (CSS, JavaScript, images)
+├── templates/website/ # HTML templates
+├── website/ # Main Django app folder
+├── manage.py # Django management script
+├── requirements.txt # Project dependencies
+└── README.md # This file
+
+
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Feel free to check the [issues page](https://github.com/kamankeshalireza30-cloud/gian-cafe-menu/issues) if you want to contribute.
+
+1.  Fork the project
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+## 📜 License
+
+This project is open-source. You can choose to add a license file (like MIT) later. *(If you add one, mention it here)*
+
+## 📧 Contact
+
+Reza Kamankesh - [Your LinkedIn Profile Link] - [Your Email Address]
+
+Project Link: [https://github.com/kamankeshalireza30-cloud/gian-cafe-menu](https://github.com/kamankeshalireza30-cloud/gian-cafe-menu)
