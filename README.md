@@ -61,12 +61,13 @@ To get a local copy up and running, follow these steps:
 A brief overview of the main project folders and files:
 
 gian-cafe-menu/
-├── mysite/ # Main Django project folder
-├── static/ # Static files (CSS, JavaScript, images)
-├── templates/website/ # HTML templates
-├── website/ # Main Django app folder
-├── manage.py # Django management script
-├── requirements.txt # Project dependencies
+
+├── mysite/ # Main Django project folder    
+├── static/ # Static files (CSS, JavaScript, images)    
+├── templates/website/ # HTML templates     
+├── website/ # Main Django app folder   
+├── manage.py # Django management script    
+├── requirements.txt # Project dependencies     
 └── README.md # This file
 
 
