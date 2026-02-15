@@ -1,6 +1,6 @@
 # GIAN Cafe - Digital Menu Website ☕
 
-![Project Screenshot](image_11.jpg)   
+![Project Screenshot](image_11.png)   
 A modern, responsive digital menu website for **GIAN Cafe**. This web application allows customers to browse the cafe's offerings, get barista recommendations, and place takeout orders with ease. The menu is dynamically categorized for a smooth and intuitive user experience.
 
 ## ✨ Live Demo
