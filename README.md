@@ -88,6 +88,6 @@ This project is open-source. You can choose to add a license file (like MIT) lat
 
 ## 📧 Contact
 
-Reza Kamankesh - [Your LinkedIn Profile Link] - [Your Email Address]
+alireza Kamankesh - [www.linkedin.com/in/alireza-kamankesh] - [kamankeshalireza30@gmail.com]
 
 Project Link: [https://github.com/kamankeshalireza30-cloud/gian-cafe-menu](https://github.com/kamankeshalireza30-cloud/gian-cafe-menu)
